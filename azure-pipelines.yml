@@ -34,3 +34,6 @@ steps:
   displayName: 'Build and push Docker image '
   env:
     pswd: $(docker.Password)
+
+- script: |
+    kubectl -s $(kube.address) --token $(kube.token) get pods set image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):$(Build.BuildId)
