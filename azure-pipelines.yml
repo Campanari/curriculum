@@ -36,5 +36,5 @@ steps:
     pswd: $(docker.Password)
 
 - script: |
-    kubectl -s $(kube.address) --token $(kube.token) set image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):$(Build.BuildId)
+    kubectl -s $(kube.address) --token $(kube.token) set image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):$(Build.BuildId) --insecure-skip-tls-verify
   displayName: 'Update deployment'
