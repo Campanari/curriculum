@@ -10,31 +10,39 @@ variables:
   imageName: 'curriculum'
 
 steps:
-- task: NodeTool@0
-  displayName: 'Install Node.js'
-  inputs:
-    versionSpec: '8.x'
+#- task: NodeTool@0
+#  displayName: 'Install Node.js'
+#  inputs:
+#    versionSpec: '8.x'
 
-- task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
-  displayName: 'Use Yarn 1.x'
-  inputs:
-    checkLatest: true
+#- task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
+#  displayName: 'Use Yarn 1.x'
+#  inputs:
+#    checkLatest: true
 
-- script: yarn install
-  displayName: 'Install dependencies'
+#- script: yarn install
+#  displayName: 'Install dependencies'
 
-- script: yarn build
-  displayName: 'Build'
+#- script: yarn build
+#  displayName: 'Build'
 
-- script: |
-    docker build -f Dockerfile -t $(docker.Id)/$(imageName):$(Build.BuildId) -t $(docker.Id)/$(imageName):latest .
-    docker login -u $(docker.Id) -p $pswd
-    docker push $(docker.Id)/$(imageName):$(Build.BuildId)
-    docker push $(docker.Id)/$(imageName):latest
-  displayName: 'Build and push Docker image'
-  env:
-    pswd: $(docker.Password)
+#- script: |
+#    docker build -f Dockerfile -t $(docker.Id)/$(imageName):$(Build.BuildId) -t $(docker.Id)/$(imageName):latest .
+#    docker login -u $(docker.Id) -p $pswd
+#    docker push $(docker.Id)/$(imageName):$(Build.BuildId)
+#    docker push $(docker.Id)/$(imageName):latest
+#  displayName: 'Build and push Docker image'
+#  env:
+#    pswd: $(docker.Password)
 
-- script: |
-    kubectl -s $(kube.address) --token $(kube.token) set image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):$(Build.BuildId)
+#- script: |
+#    kubectl -s $(kube.address) --token $(kube.token) set image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):$(Build.BuildId)
+#  displayName: 'Update deployment'
+
+- task: Kubernetes@1
   displayName: 'Update deployment'
+  inputs:
+    connectionType: Kubernetes Service Connection
+    kubernetesServiceEndpoint: microk8s
+    command: set
+    arguments: image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):lstest
