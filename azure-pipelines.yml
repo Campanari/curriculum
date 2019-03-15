@@ -39,15 +39,6 @@ steps:
     includeLatestTag: true
 
 - task: Docker@1
-  displayName: 'Tag container'
-  inputs:
-    command: Tag image
-    tagMultipleImages: true
-    imageNamesPath: 
-      $(docker.Id)/$(imageName):$(Build.BuildId)'
-      $(docker.Id)/$(imageName)
-
-- task: Docker@1
   displayName: 'Login to registry'
   inputs:
     command: login
