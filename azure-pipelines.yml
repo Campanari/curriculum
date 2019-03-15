@@ -11,7 +11,7 @@ variables:
 
 steps:
 - task: NodeTool@0
-  displayName: 'Install Node.js'
+  displayName: 'Use Node.js 8.x'
   inputs:
     versionSpec: '8.x'
 
@@ -20,21 +20,53 @@ steps:
   inputs:
     checkLatest: true
 
-- script: yarn install
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
   displayName: 'Install dependencies'
+  inputs:
+    Arguments: install
 
-- script: yarn build
+- task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
   displayName: 'Build'
+  inputs:
+    Arguments: build
 
-- script: |
-    docker build -f Dockerfile -t $(docker.Id)/$(imageName):$(Build.BuildId) -t $(docker.Id)/$(imageName):latest .
-    docker login -u $(docker.Id) -p $pswd
-    docker push $(docker.Id)/$(imageName):$(Build.BuildId)
-    docker push $(docker.Id)/$(imageName):latest
-  displayName: 'Build and push Docker image'
-  env:
-    pswd: $(docker.Password)
+- task: Docker@1
+  displayName: 'Build container'
+  inputs:
+    command: Build an image
+    dockerFile: Dockerfile
+    imageName: $(docker.Id)/$(imageName):$(Build.BuildId)
+    includeLatestTag: true
 
-- script: |
-    kubectl -s $(kube.address) --token $(kube.token) set image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):$(Build.BuildId) --insecure-skip-tls-verify
+- task: Docker@1
+  displayName: 'Tag container'
+  inputs:
+    command: Tag image
+    tagMultipleImages: true
+    imageNamesPath: 
+      $(docker.Id)/$(imageName):$(Build.BuildId)'
+      $(docker.Id)/$(imageName)
+
+- task: Docker@1
+  displayName: 'Login to registry'
+  inputs:
+    command: login
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: docker
+
+- task: Docker@1
+  displayName: 'Push container'
+  inputs:
+    command: Push an image
+    pushMultipleImages: true
+    imageNamesPath: 
+      $(docker.Id)/$(imageName):$(Build.BuildId)'
+      $(docker.Id)/$(imageName)
+
+- task: Kubernetes@1
   displayName: 'Update deployment'
+  inputs:
+    connectionType: Kubernetes Service Connection
+    kubernetesServiceEndpoint: microk8s
+    command: set
+    arguments: image deployment/$(kube.deployment) $(kube.container)=$(docker.Id)/$(imageName):$(Build.BuildId) --insecure-skip-tls-verify
