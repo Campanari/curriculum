@@ -1,38 +1,26 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
+  <v-app dark>
+    <v-navigation-drawer permanent app>
+      <Menu :data="data"/>
+    </v-navigation-drawer>
     <v-content>
-      <HelloWorld/>
+      <v-container fluid>
+        <Main :data="data"/>
+      </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import json from "./assets/data.json";
+import Menu from "./components/Menu";
+import Main from "./components/Main";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      //
-    }
-  }
+  name: "App",
+  components: { Menu, Main },
+  data: () => ({
+    data: json
+  })
 }
 </script>
