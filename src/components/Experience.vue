@@ -4,9 +4,9 @@
     <v-timeline>
       <v-timeline-item v-for="experience in data.experience" :key="experience.company" large light>
         <template v-slot:opposite>
-          <span>{{ formatDate(experience.from) }}</span>
-          <span v-if="experience.to"> - {{ formatDate(experience.to) }}</span>
-          <span v-else> - now</span>
+          <span class="font-weight-bold">{{ formatDate(experience.from) }}</span>
+          <span class="font-weight-bold" v-if="experience.to"> - {{ formatDate(experience.to) }}</span>
+          <span class="font-weight-bold" v-else> - now</span>
         </template>
         <v-card class="elevation-2">
           <v-card-title class="headline">{{ experience.company }}</v-card-title>
