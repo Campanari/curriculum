@@ -4,9 +4,7 @@
       <Menu :data="data"/>
     </v-navigation-drawer>
     <v-content>
-      <v-container fluid>
-        <Main :data="data"/>
-      </v-container>
+      <Main :data="data"/>
     </v-content>
   </v-app>
 </template>
@@ -22,5 +20,5 @@ export default {
   data: () => ({
     data: json
   })
-}
+};
 </script>

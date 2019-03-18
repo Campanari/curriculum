@@ -19,42 +19,52 @@
     },
     "skills": [
         {
+            "category": "Programming",
             "name": "C#",
             "rating": 5
         },
         {
+            "category": "Programming",
             "name": "Java",
             "rating": 4
         },
         {
+            "category": "Programming",
             "name": "Kotlin",
             "rating": 2
         },
         {
+            "category": "Programming",
             "name": "Xamarin.Android",
             "rating": 5
         },
         {
+            "category": "Programming",
             "name": "Android",
             "rating": 4
         },
         {
+            "category": "Architecture",
             "name": "Software Architecture",
             "rating": 4
         },
         {
+            "category": "Architecture",
             "name": "DevOps",
             "rating": 4
         },
         {
+            "category": "Others",
             "name": "Kubernetes",
             "rating": 3
         },
         {
+            "category": "Others",
             "name": "Docker",
             "rating": 5
         },
         {
+            "category": "Programming",
             "name": "C++",
             "rating": 4
         }
@@ -68,8 +78,10 @@
                 "state": "Paraná",
                 "country": "Brazil"
             },
-            "from": "2016-07-01T00:00:00.000Z",
-            "to": null
+            "from": "2016-07-01T12:00:00.000Z",
+            "to": null,
+            "description": "Desenvolvedor no projeto Sigma EAM (ASP.Net/AngularJS) e Sigma EAM Mobile (Android), atuando principalmente com atividades relacionadas à arquitetura e a manutenção do ciclo DevOps (Azure DevOps). Referência técnica em C#, Android, boas práticas, design de software, arquitetura de software e práticas DevOps.",
+            "link": "https://en.db1.com.br/"
         },
         {
             "occupation": "Developer",
@@ -79,8 +91,10 @@
                 "state": "São Psulo",
                 "country": "Brazil"
             },
-            "from": "2012-05-01T00:00:00.000Z",
-            "to": "2016-07-01T00:00:00.000Z"
+            "from": "2012-05-01T12:00:00.000Z",
+            "to": "2016-07-01T12:00:00.000Z",
+            "description": "Desenvolvimento de sistema de vendas para Android em Java e C# utilizando a tecnologia Xamarin e para Windows Mobile em C++. Uso de banco e gerenciamento de banco de dados como SQL Server, MySQL, Firebird e SQLite.",
+            "link": "http://www.faithsystem.com.br/"
         },
         {
             "occupation": "Developer",
@@ -90,8 +104,10 @@
                 "state": "São Psulo",
                 "country": "Brazil"
             },
-            "from": "2008-07-01T00:00:00.000Z",
-            "to": "2012-05-01T00:00:00.000Z"
+            "from": "2008-07-01T12:00:00.000Z",
+            "to": "2012-05-01T12:00:00.000Z",
+            "description": "Desenvolvimento de sistema de vendas para Android em Java, para Web em ASP.NET com C#, para Desktop em C# e para Windows Mobile em C++. Uso de banco e gerenciamento de banco de dados como Oracle, Microsoft SQL Server e SQLite.",
+            "link": "http://www.acaciaconsultoria.com.br/"
         }
     ],
     "education": [
@@ -103,8 +119,8 @@
                 "state": "São Paulo",
                 "country": "Brazil"
             },
-            "from": "2005-01-01T00:00:00.000Z",
-            "to": "2008-12-31T00:00:00.000Z"
+            "from": "2005-01-01T12:00:00.000Z",
+            "to": "2008-12-31T12:00:00.000Z"
         }
     ]
 }

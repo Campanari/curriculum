@@ -1,14 +1,14 @@
 <template>
-  <v-container>
+  <v-container py-0>
     <LandingPage :data="data"/>
     <v-divider></v-divider>
-    <AboutMe :data="data"/>
+    <AboutMe id="about-me" :data="data"/>
     <v-divider></v-divider>
-    <Experience :data="data"/>
+    <Experience id="experience" :data="data"/>
     <v-divider></v-divider>
-    <SkillsAndEducation :data="data"/>
+    <SkillsAndEducation id="skills-and-education" :data="data"/>
     <v-divider></v-divider>
-    <Contact :data="data"/>
+    <Contact id="contact" :data="data"/>
   </v-container>
 </template>
 

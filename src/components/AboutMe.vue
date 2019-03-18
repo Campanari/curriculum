@@ -1,19 +1,34 @@
 <template>
   <v-container>
-    <div class="accent--text">Who I am.</div>
-    <div style="color: rgb(255, 255, 255);">{{ data.summary }}</div>
-    <div style="color: rgb(255, 170, 00);">What I can do for you.</div>
-    <div style="color: rgb(255, 255, 255);">{{ data.summary2 }}</div>
-    <div style="text-transform: uppercase; color: rgb(255, 170, 00);">Location</div>
-    <div style="color: rgb(255, 255, 255);">{{ data.location.country }}</div>
-    <div style="text-transform: uppercase; color: rgb(255, 170, 00);">Email</div>
-    <div style="color: rgb(255, 255, 255);">{{ data.contact.email }}</div>
-    <div style="text-transform: uppercase; color: rgb(255, 170, 00);">Phone</div>
-    <div style="color: rgb(255, 255, 255);">{{ data.contact.phone }}</div>
-    <div style="text-transform: uppercase; color: rgb(255, 170, 00);">Discord</div>
-    <div style="color: rgb(255, 255, 255);">{{ data.contact.discord }}</div>
-    <div class="accent--text">{{ data.occupation }}</div>
-    <div style="color: rgb(255, 170, 00);">{{ data.name }}</div>
+    <v-layout row>
+      <v-flex xs6 px-2>
+        <div class="display-2 font-weight-bold primary--text my-4">Who I am.</div>
+        <div>{{ data.summary }}</div>
+        <div class="display-2 font-weight-bold primary--text my-4">What I can do for you.</div>
+        <div>{{ data.summary2 }}</div>
+      </v-flex>
+      <v-flex px-2>
+        <v-layout>
+          <v-flex xs4 text-uppercase primary--text font-weight-medium>
+            <div class="mb-3">Location</div>
+            <div class="mb-3">Email</div>
+            <div class="mb-3">Phone</div>
+            <div class="mb-3">Discord</div>
+          </v-flex>
+          <v-flex subheading column>
+            <div class="mb-3">{{ data.location.country }}</div>
+            <div class="mb-3">{{ data.contact.email }}</div>
+            <div class="mb-3">{{ data.contact.phone }}</div>
+            <div class="mb-3">{{ data.contact.discord }}</div>
+          </v-flex>
+        </v-layout>
+        <v-spacer/>
+        <v-layout column>
+          <span class="text-xs-right display-1">{{ data.occupation }}</span>
+          <span class="text-xs-right primary--text headline font-weight-light">{{ data.name }}</span>
+        </v-layout>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -25,5 +40,5 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
