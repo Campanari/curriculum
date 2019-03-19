@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer permanent app>
+    <v-navigation-drawer app disable-resize-watcher>
       <Menu :data="data"/>
     </v-navigation-drawer>
     <v-content>

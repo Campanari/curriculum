@@ -6,12 +6,16 @@
         <span class="sheet headline font-weight-medium mb-4 mx-4 primary--text">My Education</span>
         <v-flex class="ma-4 md6" v-for="education in data.education" :key="education.title">
           <v-layout row>
-          <span class="primary mr-2" style="width: 3px;"></span>
-          <v-layout column>
-            <span>{{ education.company }}</span>
-            <span class="primary--text headline font-weight-bold text-xs-right">{{ education.title }}</span>
-            <span class="text-xs-right">{{ formatDate(education.from) }} - {{ formatDate(education.to) }}</span>
-          </v-layout>
+            <span class="primary mr-2" style="width: 3px;"></span>
+            <v-layout column>
+              <span>{{ education.company }}</span>
+              <span
+                class="primary--text headline font-weight-bold text-xs-right"
+              >{{ education.title }}</span>
+              <span
+                class="text-xs-right"
+              >{{ formatDate(education.from) }} - {{ formatDate(education.to) }}</span>
+            </v-layout>
           </v-layout>
         </v-flex>
       </v-flex>
